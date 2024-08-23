@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Hearder from "@/components/Hearder";
 import clsx from "clsx";
+import { BreadcrumbWithCustomSeparator } from "@/components/BreadCrumbs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={clsx(inter.className,"bg-gray-200")}>
-      <Hearder />
-        {children}</body>
+      <body className={clsx(inter.className, "bg-gray-200")}>
+        <Hearder />
+        <BreadcrumbWithCustomSeparator />
+        {children}
+      </body>
     </html>
   );
 }

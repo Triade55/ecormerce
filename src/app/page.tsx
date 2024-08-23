@@ -1,5 +1,5 @@
 import CardProduct from "@/components/CardProduct";
-import EmblaCarousel from "@/components/banner";
+import {Banner} from "@/components/banner";
 import { EmblaOptionsType } from "embla-carousel";
 export default function Home() {
   const OPTIONS: EmblaOptionsType = { loop: true };
@@ -12,11 +12,11 @@ export default function Home() {
   return (
     <>
       
-      <div className="my-4">
-        <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+      <div className="my-4 border-4 border-red-700">
+        <Banner/>
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-2">
         <CardProduct />
         <CardProduct />
         <CardProduct />

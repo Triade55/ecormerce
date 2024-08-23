@@ -45,32 +45,32 @@ export default function Hearder() {
         <nav className="contents">
           <ul className="ml-4 xl:w-48 flex items-center justify-end">
             <li className="ml-2 lg:ml-4 relative inline-block">
-              <a className="" href="">
+              <Link className="" href="/user">
                 <User />
-              </a>
+              </Link>
             </li>
             <li className="ml-2 lg:ml-4 relative inline-block">
-              <a className="" href="">
+              <Link className="" href="/heart">
                 <div className="absolute -top-1 right-0 z-10 bg-primary text-white text-xs font-bold px-1 py-0.5 rounded-sm">
                   3
                 </div>
                 <Heart size={32} />
-              </a>
+              </Link>
             </li>
             <li className="ml-2 lg:ml-4 relative inline-block">
-              <a className="" href="">
+              <Link className="" href="/cart">
                 <div className="absolute -top-1 right-0 z-10 bg-primary text-white text-xs font-bold px-1 py-0.5 rounded-sm">
                   12
                 </div>
                 <ShoppingCart size={32} />
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
 
         <div className="ml-4 hidden sm:flex flex-col font-bold">
-          <span className="text-xs text-gray-400">Your Cart</span>
-          <span>$2,650,59</span>
+          <span className="text-xs text-gray-400">Ton Panier</span>
+          <span className="">1.000.000.000.000 FCFA</span>
         </div>
       </div>
 
