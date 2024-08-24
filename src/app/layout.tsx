@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={clsx(inter.className, "bg-gray-200")}>
+      <body className={clsx(inter.className, "bg-gray-200 p-4 xl:p-8")}>
         <Hearder />
         <BreadcrumbWithCustomSeparator />
         {children}

@@ -4,18 +4,15 @@ import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
 
 import Autoplay from 'embla-carousel-autoplay'
 import useEmblaCarousel from 'embla-carousel-react'
-import { usePrevNextButtons, PrevButton, NextButton } from './bannerbutton'
+import { usePrevNextButtons, PrevButton, NextButton } from './EmblaCarouselArrowButtons'
 import Image from 'next/image'
-type slideType = {
-    id:number,
-    src:string
-}
+
 type PropType = {
-  slides: slideType[]
+  slides: string[]
   options?: EmblaOptionsType
 }
 
-const EmblaCarousel: React.FC<PropType> = (props) => {
+const Banner: React.FC<PropType> = (props) => {
   const { slides, options } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
 
@@ -37,28 +34,32 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     onPrevButtonClick,
     onNextButtonClick
   } = usePrevNextButtons(emblaApi, onNavButtonClick)
+
   return (
-    <section className="embla relative">
+    <section className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((slide,index) => (
-            <div className="embla__slide " key={index} >
-              
-            <Image src={slide.src} alt='' width={100} height={100} className='w-full h-72'/>
-             </div>
+          {slides.map((index) => (
+            <div className="embla__slide" key={index}>
+              <Image 
+              src={index}
+              width={1920} height={1080}
+              alt=''
+              className='w-full h-52'
+              />
+            </div>
           ))}
         </div>
       </div>
 
       <div className="embla__controls">
-        <div className="embla__buttons ">
+        <div className="embla__buttons">
           <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
-          
+          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled}  />
         </div>
       </div>
     </section>
   )
 }
 
-export default EmblaCarousel
+export default Banner

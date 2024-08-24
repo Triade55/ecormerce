@@ -61,7 +61,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
   
     return (
       <button
-        className="border rounded-full p-2 absolute top-[40%] start-5 hover:bg-white"
+        className="border rounded-full p-2 absolute top-[40%] start-5 hover:bg-white  hidden sm:block"
         type="button"
         {...restProps}
       >
@@ -76,7 +76,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
   
     return (
       <button
-        className="border rounded-full p-2 absolute top-[40%] end-5 hover:bg-white"
+        className="border rounded-full p-2 absolute top-[40%] end-5 hover:bg-white hidden sm:block"
         type="button"
         {...restProps}
       >
@@ -84,5 +84,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
         {children}
       </button>
     )
-  }  
+  }
+  
+  
    

@@ -1,54 +1,94 @@
 "use client"
-import * as React from "react"
+import React, { useCallback } from 'react'
+import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
 
-import { Card, CardContent } from "@/components/ui/card"
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from "@/components/ui/carousel"
+  PrevButton,
+  NextButton,
+  usePrevNextButtons
+} from './bannerbutton copy'
+import Autoplay from 'embla-carousel-autoplay'
+import useEmblaCarousel from 'embla-carousel-react'
+import { useDotButton, DotButton } from './EmblaCarouselDotButton'
+import "@/styles/embla.css"
+import { Circle } from 'lucide-react'
+import Image from 'next/image'
+type PropType = {
+  slides: string[]
+  options?: EmblaOptionsType
+}
 
-export function Banner() {
-  const [api, setApi] = React.useState<CarouselApi>()
-  const [current, setCurrent] = React.useState(0)
-  const [count, setCount] = React.useState(0)
+const EmblaCarousel: React.FC<PropType> = (props) => {
+  const { slides, options } = props
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
 
-  React.useEffect(() => {
-    if (!api) {
-      return
-    }
+  const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
+    const autoplay = emblaApi?.plugins()?.autoplay
+    if (!autoplay) return
 
-    setCount(api.scrollSnapList().length)
-    setCurrent(api.selectedScrollSnap() + 1)
+    const resetOrStop =
+      autoplay.options.stopOnInteraction === false
+        ? autoplay.reset
+        : autoplay.stop
 
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1)
-    })
-  }, [api])
+    resetOrStop()
+  }, [])
+
+  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(
+    emblaApi,
+    onNavButtonClick
+  )
+
+  const {
+    prevBtnDisabled,
+    nextBtnDisabled,
+    onPrevButtonClick,
+    onNextButtonClick
+  } = usePrevNextButtons(emblaApi, onNavButtonClick)
 
   return (
-    <div>
-      <Carousel setApi={setApi} className="w-full max-w-xs">
-        <CarouselContent>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <CarouselItem key={index}>
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-4xl font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
-            </CarouselItem>
+    <section className="embla">
+      <div className="embla__viewport" ref={emblaRef}>
+        <div className="embla__container">
+          {slides.map((image) => (
+            <div className="embla__slide" key={image}>
+
+            <Image
+            src={image}
+            alt=''
+            width={100}
+            height={100}
+            key={image}
+            className='w-full h-72 rounded-xl '
+            />
+            </div>
           ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
-      <div className="py-2 text-center text-sm text-muted-foreground">
-        Slide {current} of {count}
+        </div>
       </div>
-    </div>
+
+      <div className="embla__controls">
+        <div className="embla__buttons">
+          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
+          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+        </div>
+          <div className="embla__dots absolute bottom-2 start-[45%]">
+          {scrollSnaps.map((_, index) => (
+            <DotButton
+              key={index}
+              onClick={() => onDotButtonClick(index)}
+              className={'embla__dot'}
+            >
+              <Circle
+                fill={
+                  index === selectedIndex ? 'black':"none"
+                }
+              />
+            </DotButton>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
+
+export default EmblaCarousel

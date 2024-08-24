@@ -67,9 +67,7 @@
     @apply bg-background text-foreground;
   }
 }
-body{
-  padding: 1em;
-}
+
 .banner:hover{
   transition: all 1s;
 }

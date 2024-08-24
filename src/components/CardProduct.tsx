@@ -19,7 +19,7 @@ export default function CardProduct() {
                     </button>
                   </div>
                   <Image
-                    src="https://images.unsplash.com/photo-1577982787983-e07c6730f2d3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2059&q=80"
+                    src="/one.jpg"
                     alt="Just a flower"
                     className=" w-full object-fill rounded-2xl"
                     width={100}
