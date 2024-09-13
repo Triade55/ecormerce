@@ -2,6 +2,7 @@ import { Heart, Search, ShoppingCart, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Cart from "./cart";
 
 export default function Hearder() {
   return (
@@ -19,7 +20,7 @@ export default function Hearder() {
           </Link>
         </div>
 
-        <div className="w-full max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100 rounded-md hidden xl:flex items-center">
+        <div className="w-full max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100 rounded-md hidden xl:flex items-center relative">
           <select
             className="bg-transparent uppercase font-bold text-sm p-4 mr-4"
             name=""
@@ -27,16 +28,16 @@ export default function Hearder() {
           >
             <option>all categories</option>
           </select>
-          <input
-            className="border-l border-gray-300 bg-transparent font-semibold text-sm pl-4"
-            type="text"
-            placeholder="I'm searching for ..."
-          />
-          <Search size={30} />
+            <input
+              className="border-l border-gray-300 bg-transparent font-semibold text-sm pl-4 outline-none "
+              type="text"
+              placeholder="I'm searching for ..."
+            />
+            <Search size={30} className="absolute end-2" />
         </div>
 
         <div className="ml-auto md:w-48 hidden sm:flex flex-col place-items-end">
-          <span className="font-bold md:text-xl">07 078 053 35</span>
+          <span className="font-bold">07 078 053 35</span>
           <span className="font-semibold text-sm text-gray-400">
             Support 24/7
           </span>
@@ -58,12 +59,7 @@ export default function Hearder() {
               </Link>
             </li>
             <li className="ml-2 lg:ml-4 relative inline-block">
-              <Link className="" href="/cart">
-                <div className="absolute -top-1 right-0 z-10 bg-primary text-white text-xs font-bold px-1 py-0.5 rounded-sm">
-                  12
-                </div>
-                <ShoppingCart size={32} />
-              </Link>
+              <Cart />
             </li>
           </ul>
         </nav>

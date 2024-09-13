@@ -42,6 +42,9 @@ export default function Home() {
           <Categories/>
           <Price/>
         </div>
+        <div className="col-span-3">
+
+        </div>
       </div>
       
     </>
